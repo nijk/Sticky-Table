@@ -1,0 +1,40 @@
+{
+    "name": "jquery.stickytable",
+    "version": "1.0.0b1",
+    "title": "jQuery.stickytable()",
+    "author": {
+        "name": "Nick Aspinall",
+        "url": "https://github.com/nijk"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "MIT-LICENSE.txt"
+        },
+        {
+            "type": "GPLv2",
+            "url": "GPL-LICENSE.txt"
+        }
+    ],
+    "dependencies": {
+        "jquery": ">=1.4.3",
+        "jqueryui": ">=1.8"
+    },
+    "description": "Fix a table header or footer to the top/bottom of the screen when that content is scrolled out of view",
+    "keywords": [
+        "table",
+        "sticky header",
+        "sticky footer",
+        "scroll"
+    ],
+    "homepage": "https://github.com/nijk/Sticky-Table",
+    "maintainers": [
+        {
+            "name": "Nick Aspinall",
+            "url": "https://github.com/nijk"
+        }
+    ],
+    "files": [
+        "jquery.stickytable.js"
+    ]
+}
