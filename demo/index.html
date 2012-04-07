@@ -2,32 +2,35 @@
 <html>
 <head>
     <title>jQuery Plugin demo: Sticky Table</title>
-    <link href="http://blueprintcss.org/blueprint/screen.css" type="text/css" rel="stylesheet">
+    <link href="http://blueprintcss.org/blueprint/screen.css" type="text/css"
+          rel="stylesheet">
     <style>
-        body{}
-        table{border:0 none;}
-        th, td{padding:4px; border:0 none;}
-        th{padding:10px 5px 9px; border-bottom:1px solid #999;}
+        body{ }
+        table{ border:0 none; }
+        th, td{ padding:4px; border:0 none; }
+        th{ padding:10px 5px 9px; border-bottom:1px solid #999; }
 
-        tfoot td{padding:10px 5px; background-color:#DBE8FF; border-top:1px solid #999;}
+        tfoot td{ padding:10px 5px; background-color:#DBE8FF; border-top:1px solid #999; }
 
-        .center{position:relative; width:auto; margin:0 auto; padding:20px 20px 100%;}
-        .lrg-txt{font-size:1.5em;}
-        .alt-bg th{background-color:#FFC4C3; border-color:#fff;}
-        .alt-bg tfoot td{background-color:#FFDEDE; border-color:#fff;}
-        .alt-bg tbody tr:nth-child(2n) td, .alt-bg tbody tr.even td{background-color:#F9EBE5;}
+        .center{ position:relative; width:auto; margin:0 auto; padding:20px 20px 100%; }
+        .lrg-txt{ font-size:1.5em; }
+        .alt-bg th{ background-color:#FFC4C3; border-color:#fff; }
+        .alt-bg tfoot td{ background-color:#FFDEDE; border-color:#fff; }
+        .alt-bg tbody tr:nth-child(2n) td, .alt-bg tbody tr.even td{ background-color:#F9EBE5; }
 
-        .sticky-header, .sticky-footer{-moz-box-shadow:0 2px 4px #555; -webkit-box-shadow:0 2px 4px #555; box-shadow:0 2px 4px #555;}
+        .sticky-header, .sticky-footer{ -moz-box-shadow:0 2px 4px #555; -webkit-box-shadow:0 2px 4px #555; box-shadow:0 2px 4px #555; }
 
-        thead.sticky-header tr:last-child th{border:0 none;}
-        tfoot.sticky-footer tr:first-child td{border:0 none;}
+        thead.sticky-header tr:last-child th{ border:0 none; }
+        tfoot.sticky-footer tr:first-child td{ border:0 none; }
 
-        .sticky-footer td{border-color:#ccc;}
-        .alt-bg .sticky-footer td, .alt-bg .sticky-footer th{border-color:#fff;}
+        .sticky-footer td{ border-color:#ccc; }
+        .alt-bg .sticky-footer td, .alt-bg .sticky-footer th{ border-color:#fff; }
 
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+    <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script
+    src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
     <script src="../jquery.stickytable.min.js"></script>
     <script>
         $(document).ready(function () {
