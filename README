@@ -8,7 +8,7 @@ STICKYTABLE
 
 Dependencies:
 
-jquery.stickytable.js is dependent on jQuery (1.7.1) and jQuery UI (1.8.16),
+jquery.stickytable.js is dependent on jQuery (1.4.3),
 optional reliance is on jquery.smartresize.js
 
 Description:

@@ -7,11 +7,11 @@
 /*
  * STICKYTABLE
  *
- * .stickytable( object )            Returns jQuery
+ * .stickytable( [object] )            Returns jQuery
  *
  * Dependencies:
  *
- * jquery.stickytable.js is dependent on jQuery (1.7.1) and jQuery UI (1.8.16),
+ * jquery.stickytable.js is dependent on jQuery (1.4.3),
  * optional reliance is on jquery.smartresize.js
  *
  * Description: Fix a table header or footer to the top/bottom of the screen when that content is scrolled out of view
@@ -44,7 +44,7 @@
 /**
  * Todo:
  *  1. Fix resizing issue with rolling sticky header
- *  2. Test option variations
+ *  2. Test all option variations
  *  3. Test X-Browser (Mac: FF, GC, Safari), (PC: FF, GC, IE7/8/9)
  */
 ;
@@ -110,15 +110,11 @@
             }
 
             if('function' == typeof $(window).smartresize){
-                console.log("smart resize detected", $(table));
                 $(window).smartresize(function(){
-                    console.log("smart resizing");
                     _do_resize(table);
                 });
             }else{
-                console.log("smart resize not detected");
                 $(window).resize(function(){
-                    console.log("resizing");
                     _do_resize(table);
                 });
             }
@@ -136,14 +132,13 @@
             _resize_columns(table);
             _set_styling(table);
             _scroll($(window).scrollTop(), table);
-        }
+        };
 
 
         var _set_table_scope = function(table){
             //Cache the current <table> jQuery object for quicker DOM traversal
             $this = $(table);
-            //console.log("$this", $this);
-        }
+        };
 
         var _set_objects = function(table){
             if(true === _jq.settings.stick_header){
@@ -159,8 +154,6 @@
 
                 //$sticky_header is the jQuery object which refers to the cloned <thead> in the DOM
                 $(table).data("$sticky_header", $(table).data("$header").siblings("." + _jq.settings.cloned_header_class_name));
-
-                //console.log($(table).data("$header"), $(table).data("$sticky_header"));
             }
             if(true === _jq.settings.stick_footer){
                 //Save jQuery objects (for later use) in the parent <table>
@@ -175,8 +168,6 @@
 
                 //$sticky_header is the jQuery object which refers to the cloned <thead> in the DOM
                 $(table).data("$sticky_footer", $(table).data("$footer").siblings("." + _jq.settings.cloned_footer_class_name));
-
-                //console.log($(table).data("$footer"), $(table).data("$sticky_footer"));
             }
         };
 
@@ -203,13 +194,6 @@
             $(table).data("$last_row", $("> tbody > tr:last", $this));
             $(table).data("last_row_offset", $(table).data("$last_row").offset());
             $(table).data("last_row_height", $(table).data("$last_row").outerHeight());
-
-            console.groupCollapsed("Saved data for", $(table));
-            console.log("$header", $("thead", $this));
-            console.log("$last_row", $(table).data("$last_row"));
-            console.log("last_row_offset", $(table).data("$last_row").offset());
-            console.log("last_row_height", $(table).data("$last_row").outerHeight());
-            console.groupEnd();
         };
 
         /**
@@ -259,7 +243,6 @@
                     var $sticky_footer_children = $("td", $(table).data("$sticky_footer"));
                     var $sticky_footer_child = $sticky_footer_children.eq(index);
                     $sticky_footer_child.outerWidth($(element).outerWidth());
-                    //console.log($sticky_footer_children, $sticky_footer_child, $(table).data("$footer"));
                 });
             }
         };
@@ -306,34 +289,15 @@
 
             //Determine where the header should be positioned
             if((scrollTop + offset > header_offset_top) && scrollTop + offset + header_height < last_row_offset_top - sticky_header_height){
-                //console.log("fixed sticky header");
                 stop = offset;
                 $(table).data("$header").css({"visibility":"hidden"});
                 $(table).data("$sticky_header").show();
             }else if(scrollTop + offset + header_height >= last_row_offset_top - sticky_header_height){
-                //console.log("rolling sticky header");
                 position = "absolute";
                 stop = last_row_offset_top - header_height - sticky_header_height;
             }else{
-                //console.log("hiding sticky header");
                 _default_scroll($(table).data("$header"), $(table).data("$sticky_header"));
             }
-            /*console.groupCollapsed("Elements for", $(table));
-            console.log("$this", $this);
-            console.log("$header", $(table).data("$header"));
-            console.log("$sticky_header", $(table).data("$sticky_header"));
-            console.log("$last_row", $(table).data("$last_row"));
-            console.groupEnd();
-
-            console.groupCollapsed("Values for", $(table));
-            console.log("offset_height", offset);
-            console.log("scrollTop", scrollTop);
-            console.log("header_offset_top", header_offset_top);
-            console.log("header_height", header_height);
-            console.log("sticky_header_height", sticky_header_height);
-            console.log("last_row_offset_top", last_row_offset_top);
-            console.log("stop", stop);
-            console.groupEnd();*/
             $(table).data("$sticky_header").css({"position":position, "top":stop + "px"});
         };
 
@@ -366,43 +330,18 @@
             var last_row_offset_bottom = $(table).data("last_row_offset").top + $(table).data("last_row_height");
 
             //Check that tbody is taller than the viewport and the table is scrolled into view
-            if(table_height > viewport_height && scrollTop > table_offset.top/* - table_height*/){
-                //console.log("table is tall enough for sticky footers and is in view");
+            if(table_height > viewport_height && scrollTop > table_offset.top){
                 //Check that the table is fully in the viewport
                 if(table_height - (scrollTop - table_offset.top) > viewport_height && last_row_offset_bottom - scrollTop > viewport_height - sticky_footer_height){
-                    //console.log("fixed sticky footer");
                     stop = viewport_height - sticky_footer_height;
                     $(table).data("$footer").css({"visibility":"hidden"});
                     $(table).data("$sticky_footer").show();
                 }else{
-                    //console.log("hiding sticky footer");
                     _default_scroll($footer, $sticky_footer);
                 }
-                //console.log(sticky_footer_height, table_height - (scrollTop - table_offset.top), ">", viewport_height, "&&", sticky_footer_height - scrollTop, ">", viewport_height + sticky_footer_height);
             }else{
-                //console.log("hiding sticky footer");
                 _default_scroll($footer, $sticky_footer);
             }
-            /*
-            console.groupCollapsed("Elements for", $(table));
-            console.log("$this", $this);
-            console.log("$footer", $(table).data("$footer"));
-            console.log("$sticky_footer", $(table).data("$sticky_footer"));
-            console.log("$last_row", $(table).data("$last_row"));
-            console.groupEnd();
-            */
-            /*
-            console.groupCollapsed("Values for", $(table));
-            console.log("viewport_height", viewport_height);
-            console.log("table_height", table_height);
-            console.log("tbody_height", tbody_height);
-            console.log("table_offset.top", table_offset.top);
-            console.log("sticky_footer_height", sticky_footer_height);
-            console.log("last_row_offset_bottom", last_row_offset_bottom);
-            console.log("scrollTop", scrollTop);
-            console.log("stop", stop);
-            console.groupEnd();
-            */
             $(table).data("$sticky_footer").css({"position":position, "top":stop + "px"});
         };
 
