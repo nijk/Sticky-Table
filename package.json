@@ -17,8 +17,7 @@
         }
     ],
     "dependencies": {
-        "jquery": ">=1.4.3",
-        "jqueryui": ">=1.8"
+        "jquery": ">=1.4.3"
     },
     "description": "Fix a table header or footer to the top/bottom of the screen when that content is scrolled out of view",
     "keywords": [
@@ -35,6 +34,7 @@
         }
     ],
     "files": [
-        "jquery.stickytable.js"
+        "jquery.stickytable.js",
+        "jquery.stickytable.min.js"
     ]
 }
