@@ -1,19 +1,19 @@
 # jQuery Sticky Table - Sticky headers and footers
-## `.stickytable( object )`            **Returns** *jQuery*
+#### `.stickytable( object )`            **Returns** *jQuery*
 
 ## Dependencies
----------------
+
 * jquery.stickytable.js is dependent on jQuery (1.4.3)
 * optional reliance is on [jquery.smartresize.js](https://github
 .com/louisremi/jquery-smartresize)
 
 ### Description
----------------
+
 Fix a table header or footer to the top/bottom of the screen when that content
 is scrolled out of view
 
 #### Example use
-----------------
+
 ```javascript
     var sticky_options = {
         "stick_header": true,
